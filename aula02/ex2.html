@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercicio 2</title>
+</head>
+
+<body>
+  <form>
+    <section id="infoPrincipal">
+      <h2>Dados iniciais</h2>
+      <label for="nome">Nome</label>
+      <input required id="nome" type="text">
+      <br>
+      <label for="email">Email</label>
+      <input required id="email" type="email">
+      <br>
+      <label for="fone">Telefone</label>
+      <input required id="fone" type="tel">
+      <br>
+      <label for="nascimento">Data de nascimento</label>
+      <input required type="date" id="nascimento">
+      <br><br>
+      <button>Próximo</button>
+    </section>
+    <section id="infoSegundaria">
+      <h2>Dados extra</h2>
+      <label for="linkedin">Seu linkedIn</label>
+      <input type="url" id="linkedin">
+      <br>
+      <label for="cor">Cor favorita</label>
+      <input type="color" id="cor">
+      <br>
+      <label for="navegador">Navegador mais utilizado</label>
+      <select name="" id="navegador">
+        <option value="Internet Explorer">Internet Explorer</option>
+        <option value="Firefox">Firefox</option>
+        <option value="Safari">Safari</option>
+        <option value="Chrome">Chrome</option>
+        <option value="Opera">Opera</option>
+        <option value="Duckduckgo">Duckduckgo</option>
+      </select>
+      <br>
+      <label for="navegador">Cidade onde mora</label>
+      <input id="cidades" type="text" name="city" list="cities">
+      <datalist id="cities">
+        <option value="São Paulo">
+        <option value="Rio de Janeiro">
+        <option value="Paraná">
+        <option value="Recife">
+        <option value="Alagoas">
+        <option value="Para">
+      </datalist>
+      <br><br>
+      <button>Próximo</button>
+    </section>
+    <section id="outrasInfo">
+      <h2>Conte mais sobre você</h2>
+      <label for="resumo"></label>
+      <textarea name="resumo" id="" cols="40" rows="5"></textarea>
+      <br>
+      <details>
+        <summary>Suba seu curriculo:</summary>
+        <input type="file">
+      </details>
+    </section>
+    <br>
+    <input type="submit">
+  </form>
+
+  <script>
+    function next(elementId) {
+      let inputValue = document.getElementById(elementId).value;
+      console.log(elementId, inputValue);
+    }
+
+    function nextStage() {
+      printValue("inputNumber");
+      printValue("inputRange");
+      printValue("inputTime");
+      printValue("inputColor");
+    }
+  </script>
+</body>
+
+</html>
