@@ -15,18 +15,41 @@
   </audio>
   <br><br>
   <img id="player" onclick="play()" src="./gu.jfif" alt="">
+  <img id="pause" style="display:none" onclick="pause()" src="./ro.jpg" alt="">
+
 
   <script>
-    audio = document.getElementById("audio");
+    let audio = document.getElementById("audio");
+    let image = document.getElementById("player");
+    let playerPause = document.getElementById("pause");
 
-
-    audio.onloadeddata = function () {
+    audio.onended = function () {
+      image.src = "gu.jfif"
 
     }
 
     function play() {
-      audio.play();
-      
+      image.src = "giphy.gif"
+
+      // esse setTimeout nao precisa é so para atrasar um pouco para mostrar o gif
+      setTimeout(() => {
+        audio.oncanplay()
+      }, 1000);
+
+      audio.oncanplay = function () {
+        audio.play();
+        player.style.display = "none";
+        playerPause.style.display = "block";
+      }
+
+      // se nao for usar o setTimeout descomenta a linha de baixo
+      // audio.oncanplay()
+    }
+
+    function pause() {
+      audio.pause();
+      player.style.display = "block";
+      playerPause.style.display = "none";
     }
   </script>
 </body>
