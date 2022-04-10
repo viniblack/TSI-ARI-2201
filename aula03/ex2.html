@@ -32,14 +32,17 @@
     function play() {
       image.src = "giphy.gif"
 
-// esse setTimeout nao precisa é so para atrasar um pouco para mostrar o gif
-      setTimeout(() => {audio.oncanplay()}, 2000);
+      // esse setTimeout nao precisa é so para atrasar um pouco para mostrar o gif
+      setTimeout(() => {
+        audio.oncanplay()
+      }, 2000);
 
       audio.oncanplay = function () {
         audio.play();
         player.style.display = "none";
         playerPause.style.display = "block";
-        image.src = "gu.jfif"      }
+        image.src = "gu.jfif"
+      }
 
       // se nao for usar o setTimeout descomenta a linha de baixo
       // audio.oncanplay()
