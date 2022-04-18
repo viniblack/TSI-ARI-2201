@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #dropzone {
+      width: 50%;
+      height: 100px;
+      border-radius: 5px;
+      background-color: #f5f5f5;
+      cursor: pointer;
+    }
+
+    .dropable {
+      border: 2px solid black;
+    }
+
+    .dropable-over {
+      border: 2px dashed red;
+    }
+  </style>
+</head>
+
+<body>
+  <title>Drag and Drop</title>
+</body>
+<img draggable="true" src="https://www.w3schools.com/html/img_logo.gif" alt="" id="gatinho">
+<div id="dropzone" class="dropable">
+
+</div>
+
+<script>
+  let gatinho = document.getElementById('gatinho');
+  let dropzone = document.getElementById('dropzone');
+
+  gatinho.addEventListener('dragstart', (event) => {
+    event.dataTransfer.setData('imagem', event.target.id)
+    console.log('Começou a arrastar');
+  });
+
+  dropzone.addEventListener('dragover', (event) => {
+    event.preventDefault();
+    console.log('dragover');
+  });
+
+  dropzone.addEventListener('drop', (event) => {
+    let elementId = event.dataTransfer.getData('imagem');
+    let element = document.getElementById(elementId);
+    event.target.appendChild(element);
+
+
+    console.log("elementId", elementId);
+    dropzone.classList.remove('dropable-over')
+    console.log('drop');
+  });
+
+  dropzone.addEventListener('dragenter', () => {
+    dropzone.classList.add('dropable-over')
+    console.log('dragenter 22');
+  });
+
+  dropzone.addEventListener('dragleave', () => {
+    dropzone.classList.remove('dropable-over')
+    console.log('dragleave');
+  });
+</script>
+
+</html>
