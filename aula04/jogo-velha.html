@@ -30,24 +30,6 @@
     }
   </style>
 
-  <script>
-    function drag(event) {
-      let x = event.dataTransfer.setData("sinal", event.target.id);
-    }
-
-    function allowDrop(event) {
-      event.preventDefault();
-    }
-
-    function drop(event) {
-      let elementID = event.dataTransfer.getData('sinal');
-
-      let element = document.getElementById(elementID);
-      let clone = element.cloneNode();
-      event.target.appendChild(clone);
-    }
-  </script>
-
 </head>
 
 <body>
@@ -56,22 +38,46 @@
   <img id="o" draggable="true" ondragstart="drag(event)" src="./o.png" alt="">
   <table>
     <tr>
-      <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-      <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-      <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td data-linha="0" data-coluna="0" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td data-linha="0" data-coluna="0" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td data-linha="0" data-coluna="0" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
     </tr>
     <tr>
-      <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-      <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-      <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td data-linha="0" data-coluna="0" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td data-linha="0" data-coluna="0" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td data-linha="0" data-coluna="0" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
     </tr>
     <tr>
-      <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-      <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-      <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td data-linha="0" data-coluna="0" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td data-linha="0" data-coluna="0" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td data-linha="0" data-coluna="0" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
     </tr>
   </table>
 
+
+  <script>
+    let campo = document.querySelectorAll(".campo")
+
+    
+    function drag(event) {
+      let sinal = event.dataTransfer.setData("sinal", event.target.id);
+    }
+    
+    function allowDrop(event) {
+      event.preventDefault();
+    }
+    
+    function drop(event) {
+      let elementID = event.dataTransfer.getData('sinal');
+      
+      console.log(event);
+
+
+        let element = document.getElementById(elementID);
+      let clone = element.cloneNode();
+      event.target.appendChild(clone);
+    }
+  </script>
 </body>
 
 </html>

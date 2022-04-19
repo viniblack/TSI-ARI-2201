@@ -47,16 +47,17 @@
     console.log('dragover');
   });
 
-  dropzone.addEventListener('drop', (event) => {
+  function drop(event){
     let elementId = event.dataTransfer.getData('imagem');
     let element = document.getElementById(elementId);
     event.target.appendChild(element);
 
-
     console.log("elementId", elementId);
     dropzone.classList.remove('dropable-over')
     console.log('drop');
-  });
+  }
+
+  dropzone.addEventListener('drop', drop);
 
   dropzone.addEventListener('dragenter', () => {
     dropzone.classList.add('dropable-over')
