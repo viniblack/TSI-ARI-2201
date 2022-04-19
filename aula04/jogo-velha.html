@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jogo da velha</title>
+
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    img {
+      width: 100px;
+    }
+
+    table,
+    th,
+    td {
+      width: 25rem;
+      height: 10rem;
+      text-align: center;
+      border: 2px solid black;
+      border-collapse: collapse;
+    }
+  </style>
+
+  <script>
+    function drag(event) {
+      let x = event.dataTransfer.setData("sinal", event.target.id);
+    }
+
+    function allowDrop(event) {
+      event.preventDefault();
+    }
+
+    function drop(event) {
+      let elementID = event.dataTransfer.getData('sinal');
+
+      let element = document.getElementById(elementID);
+      let clone = element.cloneNode();
+      event.target.appendChild(clone);
+    }
+  </script>
+
+</head>
+
+<body>
+  <img id="x" draggable="true" ondragstart="drag(event)" data-x="" src="./x.png" alt="">
+
+  <img id="o" draggable="true" ondragstart="drag(event)" src="./o.png" alt="">
+  <table>
+    <tr>
+      <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+    </tr>
+    <tr>
+      <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+    </tr>
+    <tr>
+      <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+    </tr>
+  </table>
+
+</body>
+
+</html>
