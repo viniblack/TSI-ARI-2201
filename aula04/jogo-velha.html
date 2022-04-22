@@ -11,71 +11,85 @@
     body {
       display: flex;
       justify-content: center;
+      flex-direction: column;
       align-items: center;
       height: 100vh;
     }
 
     img {
-      width: 100px;
+      width: 60px;
+      margin: 0;
+      padding: 0;
     }
 
     table,
-    th,
     td {
-      width: 25rem;
+      width: 30rem;
       height: 10rem;
       text-align: center;
       border: 2px solid black;
       border-collapse: collapse;
+    }
+
+    td {
+      min-width: 10rem;
+      min-height: 10rem;
+    }
+
+    .figura {
+      text-align: center;
     }
   </style>
 
 </head>
 
 <body>
-  <img id="x" draggable="true" ondragstart="drag(event)" data-x="" src="./x.png" alt="">
-
-  <img id="o" draggable="true" ondragstart="drag(event)" src="./o.png" alt="">
+  <h1>Jogo da velha</h1>
+  <div class="figura">
+    <h2>Pegue uma imagem e coloque aonde quer fazer a jogada</h2>
+    <div>
+      <img id="x" draggable="true" ondragstart="drag(event)" src="./x.png" alt="">
+      <img id="o" draggable="true" ondragstart="drag(event)" src="./o.png" alt="">
+    </div>
+  </div>
+  <br><br>
   <table>
     <tr>
-      <td data-linha="0" data-coluna="0" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-      <td data-linha="0" data-coluna="0" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-      <td data-linha="0" data-coluna="0" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
     </tr>
     <tr>
-      <td data-linha="0" data-coluna="0" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-      <td data-linha="0" data-coluna="0" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-      <td data-linha="0" data-coluna="0" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
     </tr>
     <tr>
-      <td data-linha="0" data-coluna="0" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-      <td data-linha="0" data-coluna="0" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-      <td data-linha="0" data-coluna="0" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+      <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
     </tr>
   </table>
 
-
   <script>
-    let campo = document.querySelectorAll(".campo")
-
-    
     function drag(event) {
       let sinal = event.dataTransfer.setData("sinal", event.target.id);
     }
-    
+
     function allowDrop(event) {
       event.preventDefault();
     }
-    
+
     function drop(event) {
       let elementID = event.dataTransfer.getData('sinal');
-      
-      console.log(event);
 
-
+      // estou pegando os elementos do meu event e verificando a quantidade de elementos(HTML) dentro dele
+      // se ele for igual a 0 ele deixa colocar a imagem dentro
+      if (event.toElement.childElementCount == 0) {
         let element = document.getElementById(elementID);
-      let clone = element.cloneNode();
-      event.target.appendChild(clone);
+        let clone = element.cloneNode();
+        event.target.appendChild(clone);
+      }
     }
   </script>
 </body>
