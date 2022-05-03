@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ex 01 </title>
+
+</head>
+
+<body>
+  <h1>Geolocalização</h1>
+
+  <button onclick="getLocation()">Obter Localização</button>
+
+  <div>
+    <p id="diff"></p>
+    <img id="map" alt="">
+  </div>
+
+  <script>
+    let map = document.getElementById("map");
+    let diff = document.getElementById("diff");
+
+    let address = {}
+
+    let home = {
+      lat: -23.52759332015877,
+      lon: -46.775970717410516
+    }
+
+    function getLocation() {
+      if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(locationSuccess, locationError)
+      } else {
+        console.log('Não existe API de geolocalização!');
+      }
+    }
+
+    function locationSuccess(data) {
+      let latitude = data.coords.latitude;
+      let longitude = data.coords.longitude;
+
+      address.lat = latitude
+      address.lon = longitude
+
+      map.src =
+        `http://maps.google.com/maps/api/staticmap?size=500x440&maptype=roadmap&markers=color:red|color:red|label:a|${home.lat},${home.lon}|${address.lat},${address.lon}&sensor=false&key=API_KEY`;
+      getDistanceBetweenTwoPoints(home, address)
+    }
+
+    function getDistanceBetweenTwoPoints(home, address) {
+      if (home.lat == address.lat && home.lon == address.lon) {
+        return 0;
+      }
+      const radlat1 = (Math.PI * home.lat) / 180;
+      const radlat2 = (Math.PI * address.lat) / 180;
+      const theta = home.lon - address.lon;
+      const radtheta = (Math.PI * theta) / 180;
+      let dist =
+        Math.sin(radlat1) * Math.sin(radlat2) +
+        Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+      if (dist > 1) {
+        dist = 1;
+      }
+      dist = Math.acos(dist);
+      dist = (dist * 180) / Math.PI;
+      dist = dist * 60 * 1.1515;
+      dist = dist * 1.609344; //convert miles to km
+
+      diff.innerText = `A diferenç é de ${dist.toFixed(2)} km`;
+    }
+
+    function locationError(error) {
+      console.log(error);
+    }
+  </script>
+</body>
+
+</html>
