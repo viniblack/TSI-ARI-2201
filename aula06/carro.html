@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canvas</title>
+</head>
+
+<body>
+  <canvas id="canvas" width="600" height="500">
+  </canvas>
+
+  <script>
+    const canvas = document.getElementById("canvas");
+    const context = canvas.getContext("2d");
+
+    // quadrado
+    context.fillStyle = 'rgb(255,0, 0)';
+    context.fillRect(120, 180, 200, 100);
+
+    context.fillStyle = 'rgb(255,0, 0)';
+    context.fillRect(50, 250, 350, 100);
+
+    // circulo
+    context.fillStyle = 'rgb(0,255, 0)';
+    context.arc(300, 350, 50, Math.PI * 2, false);
+    context.fill();
+
+    context.fillStyle = 'rgb(0,255, 0)';
+    context.arc(150, 350, 50, Math.PI * 2, false);
+    context.fill();
+
+  </script>
+</body>
+
+</html>

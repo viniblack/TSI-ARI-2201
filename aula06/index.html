@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canvas</title>
+</head>
+
+<body>
+  <canvas id="canvas" width="600" height="500">
+  </canvas>
+
+  <script>
+    const canvas = document.getElementById("canvas");
+    const context = canvas.getContext("2d");
+
+    // quadrado
+    context.fillStyle = 'rgb(255,0, 0)';
+    context.fillRect(25, 50, 100, 100);
+
+    // circulo
+    context.fillStyle = 'rgb(0,255, 0)';
+    context.arc(300, 100, 50, Math.PI * 2, false);
+    context.fill();
+
+    // triangulo
+    context.moveTo(465, 50);
+    context.lineTo(515, 150);
+    context.lineTo(415,150);
+    context.lineTo(465,50);
+    context.closePath();
+    context.strokeStyle = 'rgb(50,50,50)';
+    context.fillStyle = 'rgb(0,0,255)';
+    context.stroke();
+    context.fill();
+  </script>
+</body>
+
+</html>
